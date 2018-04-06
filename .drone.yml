@@ -1,0 +1,16 @@
+workspace:
+  base: /srv/app
+  path: src/github.com/umschlag/umschlag-ios
+
+pipeline:
+
+
+
+  notify-matrix:
+    image: plugins/matrix:1
+    pull: true
+    secrets: [ matrix_roomid, matrix_username, matrix_password ]
+    when:
+      local: false
+      events: [ push, tag ]
+      status: [ changed, failure ]
